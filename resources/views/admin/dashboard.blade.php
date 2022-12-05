@@ -6,7 +6,7 @@
         <div class="mp-card mp-card--plain mp-pv4">
           <div class="row align-items-center">
             <div class="col-lg-4">
-              <div id="campusSelector" class="mp-dropdown mp-ph3">
+              {{-- <div id="campusSelector" class="mp-dropdown mp-ph3">
                 <a href="#" class="mp-dropdown__toggle mp-link mp-link--accent">
                   <span class="mp-text-fs-xxlarge">
 
@@ -16,7 +16,13 @@
                 <div class="mp-dropdown__menu">
                     <a href="{{url('/admin/dashboard')}}" class="mp-dropdown__item mp-link mp-link--normal">All UP Campuses</a>
                 </div>
-              </div>
+              </div> --}}
+              <select name="" class="mp-text-field mp-link mp-link--accent" style="width: 100%; font-size:20px">
+                <option value="">All Campuses</option>
+                @foreach($campuses as $row)
+                  <option value="{{ $row->id }}">{{ $row->name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="col-md-6 col-lg-4">
               <div class="mp-text-c-gray mp-text-fs-small mp-pt3">
@@ -182,9 +188,9 @@
             url: "/admin/count",
             method: "GET",
             dataType: "json",
-            beforeSend: function() {
-                $('#loading').show();
-            },
+            // beforeSend: function() {
+            //     $('#loading').show();
+            // },
             success: function(response) {
                 $('#upcontri').text(response.total);
                 $('#membercontri').text(response.membercontri);
@@ -193,9 +199,9 @@
                 $('#totalMember').text(response.totalMember);
                 $('#totalloansgranted').text(response.totalloansgranted);
             },
-            complete: function() {
-                $('#loading').hide();
-            }
+            // complete: function() {
+            //     $('#loading').hide();
+            // }
         });
     }
   });

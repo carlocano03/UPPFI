@@ -229,9 +229,10 @@ $campusmembers=DB::table('member')
         ->select('campus.name',DB::raw('COUNT(*) as count'))
         ->join('campus','member.campus_id','campus.id')
         ->groupBy('campus_id')
-        ->get();  
+        ->get();
+$campuses=Campus::all();
 
-  return view('admin.dashboard')->with('campusmembers', $campusmembers);
+  return view('admin.dashboard')->with('campusmembers', $campusmembers)->with('campuses', $campuses);
 }
 
 public function getTotal()
