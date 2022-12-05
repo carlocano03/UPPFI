@@ -17,7 +17,7 @@
                     <a href="{{url('/admin/dashboard')}}" class="mp-dropdown__item mp-link mp-link--normal">All UP Campuses</a>
                 </div>
               </div> --}}
-              <select name="" class="mp-text-field mp-ph3 mp-link mp-link--accent" style="width: 100%; font-size:20px">
+              <select name="" class="mp-text-field mp-ph3 mp-link mp-link--accent" style="width: 100%; font-size:20px" id="campuses_select">
                 <option value="">All Campuses</option>
                 @foreach($campuses as $row)
                   <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -205,6 +205,27 @@
         });
     }
   });
+  $('#campuses_select').on('change',function(e){
+    var campuses_id = $(this).val();
+    $.ajax({
+            url: "/admin/count_percampuses",
+            method: "GET",
+            data:{'campuses_id':campuses_id},
+            dataType: "json",
+            success: function(response) {
+                $('#upcontri').text(response.total);
+                $('#membercontri').text(response.membercontri);
+                $('#earningsUP').text(response.earningsUP);
+                $('#earningsMember').text(response.earningsMember);
+                $('#totalMember').text(response.totalMember);
+                $('#totalloansgranted').text(response.totalloansgranted);
+            },
+            complete: function(response) {
+                $('#loading').hide();
+            }
+        });
+
+        });
 </script>
 @endsection
 

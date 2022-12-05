@@ -273,6 +273,52 @@ public function getTotal()
   echo json_encode($data);
 }
 
+public function getTotal_campuses($campuses_id)
+{
+    $upcontri=DB::table('contribution_transaction')
+    ->where('account_id', '1') 
+    ->sum('amount');
+
+    // $membercontri=DB::table('contribution_transaction')
+    // ->where('account_id', '2')
+    // ->sum('amount');
+
+    $earningsUP=DB::table('contribution_transaction')
+    ->where('account_id', '3')
+    ->sum('amount');
+
+    $earningsMember=DB::table('contribution_transaction')
+    ->where('account_id', '4')
+    ->sum('amount');
+
+  $membercontri=DB::table('contribution_transaction')
+  ->join('contribution_account','contribution_transaction.account_id','contribution_account.id')
+  ->join('contribution','contribution_transaction.contribution_id','contribution.id')
+  ->join('member','contribution.member_id','member.id')
+  ->where('member.campus_id',$campuses_id)
+  ->groupBy('contribution_transaction.account_id')
+  ->sum('contribution_transaction.amount');
+
+    $memberscount=count(Member::all());
+    
+    
+    $totalloansgranted=LoanTransaction::leftjoin('loan','loan_transaction.loan_id','loan.id')
+        ->leftjoin('member','loan.member_id','member.id')
+        ->sum('amount');
+
+
+    $data = array(
+      'total' => number_format($upcontri,2),
+      'membercontri' => number_format($membercontri,2),
+      'earningsUP' => number_format($earningsUP,2),
+      'earningsMember' => number_format($earningsMember,2),
+      'totalMember' => number_format($memberscount),
+      'totalloansgranted' => number_format($totalloansgranted),
+    );
+
+  echo json_encode($data);
+}
+
 public function tempass()
 {
  if(getUserdetails()->role=="SUPER_ADMIN")

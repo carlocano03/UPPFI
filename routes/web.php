@@ -54,6 +54,7 @@ Route::get('/admin/member_soa/{id}', 'AdminController@member_soa');
 Route::get('/admin/members', 'AdminController@members');
 Route::get('/admin/onboarding', 'AdminController@onboarding');
 Route::post('/admin/onboarding', 'AdminController@saveonboarding');
+Route::get('/admin/count_percampuses/{campuses_id}', 'AdminController@getTotal_campuses');
 
 Route::get('/admin/loans', 'AdminController@loansmasterlist');
 Route::get('/admin/loan-details/{id}', 'AdminController@loandetails');
