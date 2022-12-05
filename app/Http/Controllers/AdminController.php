@@ -253,6 +253,12 @@ public function getTotal()
     ->sum('amount');
 
     $memberscount=count(Member::all());
+    
+    
+    $totalloansgranted=LoanTransaction::leftjoin('loan','loan_transaction.loan_id','loan.id')
+        ->leftjoin('member','loan.member_id','member.id')
+        ->sum('amount');
+
 
     $data = array(
       'total' => number_format($upcontri,2),
@@ -260,6 +266,7 @@ public function getTotal()
       'earningsUP' => number_format($earningsUP,2),
       'earningsMember' => number_format($earningsMember,2),
       'totalMember' => number_format($memberscount),
+      'totalloansgranted' => number_format($totalloansgranted),
     );
 
   echo json_encode($data);

@@ -41,8 +41,8 @@
               <div class="row align-items-center mp-pb3">
                 <div class="col">
                   <span class="mp-mr2 mp-dashboard__icon">@include('layouts.icons.i-loans')</span>
-                  <span class="mp-text-fs-xlarge">
-                    123456
+                  <span class="mp-text-fs-xlarge" id="totalloansgranted">
+                    
                   </span>
                 </div>
                 <div class="col-auto col-lg-12 col-xl-auto mp-text-right">
@@ -188,6 +188,7 @@
                 $('#earningsUP').text(response.earningsUP);
                 $('#earningsMember').text(response.earningsMember);
                 $('#totalMember').text(response.totalMember);
+                $('#totalloansgranted').text(response.totalloansgranted);
             }
         });
     }
