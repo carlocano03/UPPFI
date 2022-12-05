@@ -246,11 +246,16 @@ public function getTotal()
     ->where('account_id', '4')
     ->sum('amount');
 
+    $total_members=DB::table('contribution_transaction')
+    ->where('account_id', '4')
+    ->sum('amount');
+
     $data = array(
       'total' => number_format($upcontri,2),
       'membercontri' => number_format($membercontri,2),
       'earningsUP' => number_format($earningsUP,2),
       'earningsMember' => number_format($earningsMember,2),
+      'total_members' => number_format($total_members,2),
     );
 
   echo json_encode($data);
