@@ -25,11 +25,7 @@
               <div class="row align-items-center mp-pb3">
                 <div class="col">
                   <span class="mp-mr2 mp-dashboard__icon">@include('layouts.icons.i-members')</span>
-<<<<<<< HEAD
-                  <span class="mp-text-fs-xlarge" id="total_members">0000</span>
-=======
                   <span class="mp-text-fs-xlarge" id="totalMember"></span>
->>>>>>> 15899897109f944443f0c0d0f902dc82c411a4f2
                 </div>
                 <div class="col-auto col-lg-12 col-xl-auto mp-text-right">
                   <a href="{{url('/admin/members')}}" class="mp-button mp-button--primary mp-button--ghost mp-button--raised mp-button--mini mp-text-fs-small">
@@ -191,11 +187,7 @@
                 $('#membercontri').text(response.membercontri);
                 $('#earningsUP').text(response.earningsUP);
                 $('#earningsMember').text(response.earningsMember);
-<<<<<<< HEAD
-                $('#total_members').text(response.total_members);
-=======
                 $('#totalMember').text(response.totalMember);
->>>>>>> 15899897109f944443f0c0d0f902dc82c411a4f2
             }
         });
     }

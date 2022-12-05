@@ -252,11 +252,14 @@ public function getTotal()
     ->where('account_id', '4')
     ->sum('amount');
 
+    $memberscount=count(Member::all());
+
     $data = array(
       'total' => number_format($upcontri,2),
       'membercontri' => number_format($membercontri,2),
       'earningsUP' => number_format($earningsUP,2),
       'earningsMember' => number_format($earningsMember,2),
+      'totalMember' => number_format($memberscount),
     );
 
   echo json_encode($data);
