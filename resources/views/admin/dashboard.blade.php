@@ -182,12 +182,18 @@
             url: "/admin/count",
             method: "GET",
             dataType: "json",
+            beforeSend: function() {
+                $('#loading').show();
+            },
             success: function(response) {
                 $('#upcontri').text(response.total);
                 $('#membercontri').text(response.membercontri);
                 $('#earningsUP').text(response.earningsUP);
                 $('#earningsMember').text(response.earningsMember);
                 $('#totalMember').text(response.totalMember);
+            },
+            complete: function() {
+                $('#loading').hide();
             }
         });
     }
