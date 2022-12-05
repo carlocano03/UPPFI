@@ -191,10 +191,10 @@
                 $('#earningsUP').text(response.earningsUP);
                 $('#earningsMember').text(response.earningsMember);
                 $('#totalMember').text(response.totalMember);
+                $('#totalloansgranted').text(response.totalloansgranted);
             },
             complete: function() {
                 $('#loading').hide();
-                $('#totalloansgranted').text(response.totalloansgranted);
             }
         });
     }
