@@ -54,7 +54,7 @@
 </head>
 <body id="uppfi">
     <div id="loading" class="mx-auto" style="display:none;">
-        <img id="loading-image" src="{{ asset('/dist/loader.gif') }}" alt="Loading..." />
+        <img id="loading-image" src="{{ asset('/dist/loading.gif') }}" alt="Loading..." />
     </div>
 
 
