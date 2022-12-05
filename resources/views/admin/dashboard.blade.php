@@ -25,7 +25,7 @@
               <div class="row align-items-center mp-pb3">
                 <div class="col">
                   <span class="mp-mr2 mp-dashboard__icon">@include('layouts.icons.i-members')</span>
-                  <span class="mp-text-fs-xlarge">0000</span>
+                  <span class="mp-text-fs-xlarge" id="totalMember"></span>
                 </div>
                 <div class="col-auto col-lg-12 col-xl-auto mp-text-right">
                   <a href="{{url('/admin/members')}}" class="mp-button mp-button--primary mp-button--ghost mp-button--raised mp-button--mini mp-text-fs-small">
@@ -37,7 +37,6 @@
             <div class="col-md-6 col-lg-4">
               <div class="mp-text-c-gray mp-text-fs-small mp-pt3">
                 Total Loans Granted
-                00000
               </div>
               <div class="row align-items-center mp-pb3">
                 <div class="col">
@@ -71,10 +70,12 @@
               </div>
             </div>
             <div class="mp-card__body mp-text-fs-medium mp-pt3">
+              @foreach($campusmembers as $member)
                 <div class="row mp-mt1">
-                  <div class="col mp-text-c-gray">UP Diliman</div>
-                  <div class="col-sm-auto mp-text-c-gray">1000</div>
+                <div class="col mp-text-c-gray">{{ $member->name }}</div>
+                  <div class="col-sm-auto mp-text-c-gray">{{ $member->count }}</div>
                 </div>
+                @endforeach
             </div>
           </div>
         </div>
@@ -186,6 +187,7 @@
                 $('#membercontri').text(response.membercontri);
                 $('#earningsUP').text(response.earningsUP);
                 $('#earningsMember').text(response.earningsMember);
+                $('#totalMember').text(response.totalMember);
             }
         });
     }
