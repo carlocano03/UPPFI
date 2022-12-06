@@ -273,7 +273,7 @@ public function getTotal()
   echo json_encode($data);
 }
 
-public function getTotal_campuses($campuses_id)
+public function getTotal_campuses()
 {
     $upcontri=DB::table('contribution_transaction')
     ->where('account_id', '1') 
@@ -295,7 +295,7 @@ public function getTotal_campuses($campuses_id)
   ->join('contribution_account','contribution_transaction.account_id','contribution_account.id')
   ->join('contribution','contribution_transaction.contribution_id','contribution.id')
   ->join('member','contribution.member_id','member.id')
-  ->where('member.campus_id',$campuses_id)
+  ->where('member.campus_id',$_GET['campuses_id'])
   ->groupBy('contribution_transaction.account_id')
   ->sum('contribution_transaction.amount');
 
